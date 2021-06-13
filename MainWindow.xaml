@@ -1,0 +1,130 @@
+﻿<Window x:Class="peer10.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:peer10"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="639.767" Width="990.678" ResizeMode="NoResize" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="tree" Margin="17,19,610,165.4" BorderBrush="Black" Foreground="#FF590671" SelectedItemChanged="tree_SelectedItemChanged" Background="{x:Null}">
+            <TreeView.Resources>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Margin="3" Source="{Binding 
+                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TreeViewItem}}, 
+                                        Path=Tag,
+                                        Converter={x:Static local:ImageConverter.Instance}}" />
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TreeView.Resources>
+        </TreeView>
+        <Button x:Name="addItem" Content="Create!" HorizontalAlignment="Left" Margin="696,147,0,0" VerticalAlignment="Top" Width="120" Click="addItem_Click" Height="26" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <Label Content="Folder`s name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="390,39,0,0"/>
+        <TextBox x:Name="folderName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="390,66,0,0" BorderBrush="#FFDA9AB4"/>
+        <Button x:Name="addFolder" Content="Create!" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Click="addFolder_Click" Margin="390,148,0,0" Height="25" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="itemName" HorizontalAlignment="Left" Height="23" Margin="696,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFDA9AB4"/>
+        <RadioButton x:Name="wantToCreateFolder" Content="Work with folder" HorizontalAlignment="Left" Margin="390,19,0,0" VerticalAlignment="Top" GroupName="Creation" Checked="wantToCreateFolder_Checked"/>
+        <RadioButton x:Name="wantToCreateItem" Content="Work with item" HorizontalAlignment="Left" Margin="696,19,0,0" VerticalAlignment="Top" GroupName="Creation" Checked="wantToCreateItem_Checked"/>
+        <Label x:Name="path" Content="Label" HorizontalAlignment="Left" Margin="571,101,0,483.4" Width="97" Visibility="Hidden"/>
+        <TextBox x:Name="countItems" HorizontalAlignment="Left" Height="23" Margin="835,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFDA9AB4"/>
+        <TextBox x:Name="priceItem" HorizontalAlignment="Left" Height="23" Margin="696,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFDA9AB4"/>
+        <Label Content="Item`s name" HorizontalAlignment="Left" Margin="696,39,0,0" VerticalAlignment="Top"/>
+        <Label Content="Price" HorizontalAlignment="Left" Margin="696,83,0,0" VerticalAlignment="Top"/>
+        <Label Content="Count" HorizontalAlignment="Left" Margin="835,39,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="save" Content="S A V E" HorizontalAlignment="Left" Margin="530,25,0,0" VerticalAlignment="Top" Width="149" Click="save_Click" Visibility="Visible" Height="84" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <ListView x:Name="itemsView" HorizontalAlignment="Left" Height="386" Margin="390,214,0,0" VerticalAlignment="Top" Width="565">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Level" Width="120" DisplayMemberBinding="{Binding Level}" />
+                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Code" Width="150" DisplayMemberBinding="{Binding Code}" />
+                    <GridViewColumn Header="Count" Width="50" DisplayMemberBinding="{Binding Count}" />
+                    <GridViewColumn Header="Price" Width="150" DisplayMemberBinding="{Binding Price}" />
+                </GridView>
+            </ListView.View>
+            <ListBox Height="100" Width="100"/>
+        </ListView>
+        <Button x:Name="changeFolder" Content="Change selected folder" HorizontalAlignment="Left" Margin="530,148,0,0" VerticalAlignment="Top" Width="149" Height="26" Click="changeFolder_Click" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="changeItem" Content="Change selected item" HorizontalAlignment="Left" Margin="835,147,0,0" VerticalAlignment="Top" Width="120" Height="26" Click="changeItem_Click" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="deleteFolder" Content="Delete selected folder" HorizontalAlignment="Left" Margin="390,178,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="deleteFolder_Click" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="deleteItem" Content="Delete selected item" HorizontalAlignment="Left" Margin="835,178,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="deleteItem_Click" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <Label Content="Articule" HorizontalAlignment="Left" Margin="835,83,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="articulItem" HorizontalAlignment="Left" Height="23" Margin="835,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFDA9AB4"/>
+        <CheckBox x:Name="showAll" Content="Show all items in folder" HorizontalAlignment="Left" Margin="530,184,0,0" VerticalAlignment="Top" Height="19" Width="144" Checked="showAll_Checked" Unchecked="showAll_Unchecked"/>
+        <Button x:Name="csvBtn" Content="Create csv" HorizontalAlignment="Left" Margin="207,513,0,0" VerticalAlignment="Top" Width="167" Click="csvBtn_Click" Height="26" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="randomC" Content="Create random struct" HorizontalAlignment="Left" Margin="207,552,0,0" VerticalAlignment="Top" Width="167" Height="46" Click="randomC_Click" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="minCount" HorizontalAlignment="Left" Height="26" Margin="129,512,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="48" BorderBrush="#FFDA9AB4"/>
+        <Label x:Name="Amount_of_ending" Content="Amount of ending" HorizontalAlignment="Left" Margin="17,507,0,0" VerticalAlignment="Top" Height="31"/>
+        <TextBox x:Name="amountFolders" HorizontalAlignment="Left" Height="23" Margin="129,551,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48" Text="2" BorderBrush="#FFDA9AB4"/>
+        <TextBox x:Name="amountItems" HorizontalAlignment="Left" Height="19" Margin="129,578,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48" Text="4"/>
+        <Label Content="Amount of folders" HorizontalAlignment="Left" Margin="17,547,0,0" VerticalAlignment="Top" Width="107"/>
+        <Label Content="Amount in folder" HorizontalAlignment="Left" Margin="17,574,0,0" VerticalAlignment="Top" Width="107"/>
+        <Button x:Name="loadInFile" Content="Load data" HorizontalAlignment="Left" Margin="17,457,0,0" VerticalAlignment="Top" Width="160" Height="45" Click="loadInFile_Click" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="savingChange" Content="Change the file to save" HorizontalAlignment="Left" Margin="207,458,0,0" VerticalAlignment="Top" Width="167" Height="21" Click="savingChange_Click" BorderBrush="#FFDA9AB4">
+            <Button.Background>
+                <ImageBrush ImageSource="glitter.jpg"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="whereToSave" HorizontalAlignment="Left" Height="23" Margin="207,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" Background="White" BorderBrush="#FFDA9AB4"/>
+        <Label Content="The sort code" HorizontalAlignment="Left" Margin="390,83,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="sortCodeFolder" HorizontalAlignment="Left" Height="23" Margin="390,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFDA9AB4"/>
+        <CheckBox x:Name="sortByCode" Content="Sort all by code" HorizontalAlignment="Left" Margin="696,184,0,0" VerticalAlignment="Top" Width="120" Checked="sortByCode_Checked" Unchecked="sortByCode_Unchecked"/>
+        <CheckBox x:Name="autosave" Content="Autosave" HorizontalAlignment="Left" Margin="530,120,0,0" VerticalAlignment="Top" Height="23" Width="149" Checked="autosave_Checked" Unchecked="autosave_Unchecked"/>
+
+
+    </Grid>
+</Window>
